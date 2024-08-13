@@ -2,8 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    firstName: String,
-    lastName: String,
+    firstName: {
+        type: String,
+        default: '',
+    },
+    lastName: {
+        type: String,
+        default: '',
+    },
     email: {
         type: String,
         lowercase: true,
@@ -14,7 +20,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    profileImage: String,
+    profileImage: {
+        type: String,
+        default: '',
+    },
     isLoggedIn: {
         type: Boolean,
         default: false,
