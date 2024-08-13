@@ -91,3 +91,5 @@ const connectDB = async () => {
 const PORT = process.env.PORT_CONNECTION;
 
 connectDB();
+
+module.exports = app();
