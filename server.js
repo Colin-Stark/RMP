@@ -4,12 +4,14 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const User = require('./Mongo/schemas'); // Adjust the path if necessary
 const authCheck = require('./middleware/auth_check');
+const helmet = require('helmet');
 
 const app = express();
 
 // Middleware
 app.use(express.json());
 app.use(authCheck);
+app.use(helmet());
 
 // Test endpoint
 app.get('/', (req, res) => {
