@@ -61,15 +61,19 @@ app.post('/register', (req, res) => {
 
     newUser.save()
         .then(() => {
-            console.log('Registration Successful');
+            console.log('User Created');
+            res.send('Registration Successful');
         })
         .catch((error) => {
-            console.error('Registration Error:', error);
+
+            if (error.code === 11000) {
+                return res.status(400).send('Email already exists');
+            }
+            else {
+                console.error('Registration Error:', error);
+            }
             return res.status(500).send('Registration Error');
         });
-
-    res.send('Registration Successful');
-
 });
 
 
@@ -86,6 +90,12 @@ const connectDB = async () => {
 
 // Call the connectDB function to establish the MongoDB connection
 connectDB();
+
+// Start the server
+// const PORT = 8080;
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });
 
 // Export the Express app as a serverless function
 module.exports = app;
