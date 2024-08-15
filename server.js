@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const mongoose = require('mongoose');
-const User = require('./Mongo/schemas'); // Adjust the path if necessary
+const User = require('./Mongo/schemas');
 const authCheck = require('./middleware/auth_check');
 const helmet = require('helmet');
 
@@ -10,6 +10,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(authCheck);
 app.use(helmet());
 
@@ -24,36 +25,58 @@ app.get('/register', (req, res) => {
 });
 
 // Register (POST)
-app.post('/register', async (req, res) => {
+app.post('/register', (req, res) => {
     const { email, password } = req.body;
 
-    try {
-        const user = await User.findOne({ email });
-
-        if (user) {
-            return res.status(400).send('User already exists');
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 12);
-        const newUser = new User({
-            email,
-            password: hashedPassword,
-        });
-        await newUser.save();
-        res.status(201).send('User created');
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).send('Internal Server Error');
+    /** Email and Password must exist */
+    if (!email || !password) {
+        console.log('Email and Password are required');
+        return res.status(400).send('Email and Password are required');
     }
+
+    /**
+     * Email has to end with @myseneca.ca
+     */
+    if (!email.endsWith('@myseneca.ca')) {
+        console.log('Email must end with @myseneca.ca');
+        return res.status(400).send('Email must end with @myseneca.ca');
+    }
+
+    /**
+     * CHECK THAT PASSWORD IS AT LEAST 8 CHARACTERS LONG 
+     * AND NOT MORE THAN 16 CHARACTERS LONG
+     */
+    if (password.length < 8 || password.length > 16) {
+        console.log('Password must be between 8 and 16 characters');
+        return res.status(400).send('Password must be between 8 and 16 characters');
+    }
+
+
+
+    /** Create a new User */
+    const newUser = new User({
+        email,
+        password: bcrypt.hashSync(password, 10),
+    });
+
+    newUser.save()
+        .then(() => {
+            console.log('Registration Successful');
+        })
+        .catch((error) => {
+            console.error('Registration Error:', error);
+            return res.status(500).send('Registration Error');
+        });
+
+    res.send('Registration Successful');
+
 });
+
 
 // Connect to MongoDB and start the server
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGOOSE_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(process.env.MONGOOSE_URL);
         console.log('Connected to MongoDB');
     } catch (error) {
         console.error('MongoDB Connection Error:', error);
