@@ -67,6 +67,7 @@ app.post('/register', (req, res) => {
         .catch((error) => {
 
             if (error.code === 11000) {
+                console.log('Email already exists');
                 return res.status(400).send('Email already exists');
             }
             else {
