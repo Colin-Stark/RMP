@@ -89,6 +89,7 @@ const sendOTPEmail = async (email, otp) => {
             user: process.env.OUTLOOK_EMAIL,
             pass: process.env.APP_PASSWORD,
         },
+        connectionTimeout: 1200000,
     });
 
     let info = await transporter.sendMail({

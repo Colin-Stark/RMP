@@ -37,10 +37,10 @@ const connectDB = async () => {
 connectDB();
 
 // Start the server
-const PORT = 8080;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// const PORT = 8080;
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });
 
 // Export the Express app as a serverless function
 module.exports = app;
