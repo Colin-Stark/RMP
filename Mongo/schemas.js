@@ -34,9 +34,11 @@ const userSchema = new Schema({
     },
     otp: {
         type: Number,
+        default: null
     },
     otpExpires: {
         type: Date,
+        default: null,
     },
 });
 
