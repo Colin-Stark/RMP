@@ -27,7 +27,7 @@ async function authCheck(req, res, next) {
     } catch (error) {
         // Handle errors in a catch block
         console.error("Internal Server Error:", error);
-        return res.status(500).json("Internal Server Error");
+        return res.status(500).send("Internal Server Error");
     }
 }
 

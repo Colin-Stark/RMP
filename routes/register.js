@@ -12,17 +12,17 @@ const validateRegisterInput = (req, res, next) => {
 
     if (!email || !password) {
         console.log('Email and Password are required');
-        return res.status(400).json('Email and Password are required');
+        return res.status(400).send('Email and Password are required');
     }
 
     if (!email.endsWith('@myseneca.ca')) {
         console.log('Email must end with @myseneca.ca');
-        return res.status(400).json('Email must end with @myseneca.ca');
+        return res.status(400).send('Email must end with @myseneca.ca');
     }
 
     if (password.length < 8 || password.length > 16) {
         console.log('Password must be between 8 and 16 characters');
-        return res.status(400).json('Password must be between 8 and 16 characters');
+        return res.status(400).send('Password must be between 8 and 16 characters');
     }
 
     next();
@@ -40,10 +40,10 @@ const createNewUser = async (email, password) => {
 const handleRegisterError = (error, res) => {
     if (error.code === 11000) {
         console.log('Email already exists');
-        return res.status(400).json('Email already exists');
+        return res.status(400).send('Email already exists');
     } else {
         console.error('Registration Error:', error);
-        return res.status(500).json('Registration Error');
+        return res.status(500).send('Registration Error');
     }
 };
 
@@ -80,7 +80,7 @@ const generateOTP = async (email) => {
 
 
 // Function to send OTP email
-const jsonOTPEmail = async (email, otp) => {
+const sendOTPEmail = async (email, otp) => {
     let transporter = nodemailer.createTransport({
         host: "smtp.office365.com",
         port: 587,
@@ -92,7 +92,7 @@ const jsonOTPEmail = async (email, otp) => {
         connectionTimeout: 1200000,
     });
 
-    let info = await transporter.jsonMail({
+    let info = await transporter.sendMail({
         from: '"Rate My Professor" <rirr0@outlook.com>',
         to: email,
         subject: "OTP Verification",
@@ -122,7 +122,7 @@ const jsonOTPEmail = async (email, otp) => {
 
 // Register page (GET)
 router.get('/', (req, res) => {
-    res.json('Register Page');
+    res.send('Register Page');
 });
 
 
@@ -133,9 +133,9 @@ router.post('/', validateRegisterInput, async (req, res) => {
     try {
         await createNewUser(email, password);
         const otp = await generateOTP(email);
-        await jsonOTPEmail(email, otp);
+        await sendOTPEmail(email, otp);
         console.log('User Created');
-        res.json('Registration Successful');
+        res.send('Registration Successful');
     } catch (error) {
         handleRegisterError(error, res);
     }
