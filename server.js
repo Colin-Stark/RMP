@@ -11,7 +11,13 @@ const userRegister = require('./routes/register');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(authCheck);
-app.use(helmet());
+
+/**
+ * Removing security guard middleware
+ * so i can test it on flutter development
+ * stage
+ */
+// app.use(helmet());
 
 // Routes
 app.use("/register", userRegister);
