@@ -4,6 +4,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const authCheck = require('./middleware/auth_check');
 const helmet = require('helmet');
+const cors = require('cors');
 const app = express();
 const userRegister = require('./routes/register');
 
@@ -12,12 +13,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(authCheck);
 
-/**
- * Removing security guard middleware
- * so i can test it on flutter development
- * stage
- */
-// app.use(helmet());
+app.use(helmet());
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+}));
 
 // Routes
 app.use("/register", userRegister);
