@@ -1,0 +1,245 @@
+[
+    {
+        "semester": 1,
+        "courses": [
+            {
+                "courseCode": "APS145",
+                "courseName": "Applied Problem Solving"
+            },
+            {
+                "courseCode": "COM101",
+                "courseName": "Communicating Across Contexts"
+            },
+            {
+                "courseCode": "COM111",
+                "courseName": "Communicating Across Contexts (Enriched)"
+            },
+            {
+                "courseCode": "CPR101",
+                "courseName": "Computer Principles for Programmers"
+            },
+            {
+                "courseCode": "IPC144",
+                "courseName": "Introduction to Programming Using C"
+            },
+            {
+                "courseCode": "OPS102",
+                "courseName": "Operating Systems for Programmers"
+            }
+        ]
+    },
+    {
+        "semester": 2,
+        "courses": [
+            {
+                "courseCode": "DBS211",
+                "courseName": "Introduction to Database Systems"
+            },
+            {
+                "courseCode": "OOP244",
+                "courseName": "Introduction to Object Oriented Programming"
+            },
+            {
+                "courseCode": "SFT221",
+                "courseName": "Software Testing"
+            },
+            {
+                "courseCode": "WEB222",
+                "courseName": "Web Programming Principles"
+            }
+        ]
+    },
+    {
+        "semester": 3,
+        "courses": [
+            {
+                "courseCode": "DBS311",
+                "courseName": "Advanced Database Services"
+            },
+            {
+                "courseCode": "OOP345",
+                "courseName": "Object-Oriented Software Development Using C++"
+            },
+            {
+                "courseCode": "SYD366",
+                "courseName": "Software Analysis and Design - I"
+            },
+            {
+                "courseCode": "WEB322",
+                "courseName": "Web Programming Tools and Frameworks"
+            },
+            {
+                "courseCode": "WTP100",
+                "courseName": "Work Term Preparation"
+            },
+            {
+                "courseCode": "WTP100 - Work-Integrated Learning option only",
+                "courseName": "plus: General Education Course (1)"
+            }
+        ]
+    },
+    {
+        "semester": 4,
+        "courses": [
+            {
+                "courseCode": "DSA456",
+                "courseName": "Data Structures and Algorithms"
+            },
+            {
+                "courseCode": "EAC594",
+                "courseName": "Business Communication for the Digital Workplace"
+            },
+            {
+                "courseCode": "PMC444",
+                "courseName": "IT Project Management Fundamentals Tools and Techniques"
+            },
+            {
+                "courseCode": "SYD466",
+                "courseName": "Software Analysis and Design - II"
+            },
+            {
+                "courseCode": "WEB422",
+                "courseName": "Web Programming for Apps and Services"
+            }
+        ]
+    },
+    {
+        "semester": 5,
+        "courses": [
+            {
+                "courseCode": "APD545",
+                "courseName": "Application Development"
+            },
+            {
+                "courseCode": "PRJ566",
+                "courseName": "Project Planning and Management"
+            }
+        ]
+    },
+    {
+        "semester": 6,
+        "courses": [
+            {
+                "courseCode": "PRJ666",
+                "courseName": "Project Implementation"
+            },
+            {
+                "courseCode": "CPA331",
+                "courseName": "Computer Programming and Analysis, Co-op"
+            },
+            {
+                "courseCode": "CPA332",
+                "courseName": "Computer Programming and Analysis, Co-op II"
+            }
+        ]
+    },
+    {
+        "semester": 5,
+        "courses": [
+            {
+                "courseCode": "BCI433",
+                "courseName": "IBM Business Computing"
+            },
+            {
+                "courseCode": "CCP555",
+                "courseName": "Cloud Computing for Programmers"
+            },
+            {
+                "courseCode": "CVI620",
+                "courseName": "Computer Vision"
+            },
+            {
+                "courseCode": "DBA625",
+                "courseName": "Database Administration"
+            },
+            {
+                "courseCode": "DBS501",
+                "courseName": "Stored Procedures Using Oracles PL/SQL"
+            },
+            {
+                "courseCode": "DBW624",
+                "courseName": "Introduction to Datawarehousing"
+            },
+            {
+                "courseCode": "DEN502",
+                "courseName": "Digital Entrepreneurship for Programmers"
+            },
+            {
+                "courseCode": "ELA521",
+                "courseName": "Ethics, Law and Application Development"
+            },
+            {
+                "courseCode": "GAM531",
+                "courseName": "Game Engine Foundations"
+            },
+            {
+                "courseCode": "GAM532",
+                "courseName": "Game Engine Techniques"
+            },
+            {
+                "courseCode": "GAM536",
+                "courseName": "Game Content Creation"
+            },
+            {
+                "courseCode": "GAM537",
+                "courseName": "Game Development Fundamentals"
+            },
+            {
+                "courseCode": "GPU621",
+                "courseName": "Parallel Algorithms and Programming Techniques"
+            },
+            {
+                "courseCode": "MAP523",
+                "courseName": "Mobile App Development - iOS"
+            },
+            {
+                "courseCode": "MAP524",
+                "courseName": "Mobile App Development - Android"
+            },
+            {
+                "courseCode": "MAP526",
+                "courseName": "Mobile App Development - Cross Platform"
+            },
+            {
+                "courseCode": "MST300",
+                "courseName": "Introduction to Microsoft Cloud Technologies"
+            },
+            {
+                "courseCode": "OSD600",
+                "courseName": "Open Source Development"
+            },
+            {
+                "courseCode": "OSD700",
+                "courseName": "Open Source Development Project"
+            },
+            {
+                "courseCode": "SDR520",
+                "courseName": "Software Design for Robotics Applications"
+            },
+            {
+                "courseCode": "SPO600",
+                "courseName": "Software Portability and Optimization"
+            },
+            {
+                "courseCode": "TEC702",
+                "courseName": "Technician as an Entrepreneur"
+            },
+            {
+                "courseCode": "UNX510",
+                "courseName": "UNIX BASH Shell Scripting"
+            },
+            {
+                "courseCode": "UNX511",
+                "courseName": "UNIX Systems Programming"
+            },
+            {
+                "courseCode": "WEB524",
+                "courseName": "Web Programming Using ASP.NET"
+            },
+            {
+                "courseCode": "WEB530",
+                "courseName": "Cross-platform App Development"
+            }
+        ]
+    }
+]

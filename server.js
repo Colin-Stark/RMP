@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const app = express();
 const userRegister = require('./routes/register');
+const userLogin = require('./routes/login');
 
 // Middleware
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use(cors({
 
 // Routes
 app.use("/register", userRegister);
+app.use("/login", userLogin);
 
 // Test endpoint
 app.get('/', (req, res) => {
@@ -34,6 +36,14 @@ const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGOOSE_URL);
         console.log('Connected to MongoDB');
+
+        // Start the server
+
+        // const PORT = 8080;
+        // app.listen(PORT, () => {
+        //     console.log(`Server running on port ${PORT}`);
+        // });
+
     } catch (error) {
         console.error('MongoDB Connection Error:', error);
         process.exit(1);
@@ -43,11 +53,7 @@ const connectDB = async () => {
 // Call the connectDB function to establish the MongoDB connection
 connectDB();
 
-// Start the server
-// const PORT = 8080;
-// app.listen(PORT, () => {
-//     console.log(`Server running on port ${PORT}`);
-// });
+
 
 // Export the Express app as a serverless function
 module.exports = app;
