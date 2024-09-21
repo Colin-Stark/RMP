@@ -7,6 +7,7 @@ const cors = require('cors');
 const app = express();
 const userRegister = require('./routes/register');
 const userLogin = require('./routes/login');
+const userVerification = require('./routes/verification');
 
 // Middleware
 app.use(express.json());
@@ -20,9 +21,14 @@ app.use(cors({
     allowedHeaders: ['Content-Type'],
 }));
 
+
+
 // Routes
 app.use("/register", userRegister);
 app.use("/login", userLogin);
+app.use("/verify", userVerification);
+
+
 
 // Test endpoint
 app.get('/', (req, res) => {

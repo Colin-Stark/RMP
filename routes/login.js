@@ -41,8 +41,16 @@ router.post('/', validateLogInInput, async (req, res) => {
             return res.status(401).send('Invalid Password');
         }
 
-        console.log(`${email} has Logged in Successful`);
-        res.send('Login Successful');
+        // update isLoggedIn to true
+        user.isLoggedIn = true;
+
+        // set lastLogin to current date and time
+        user.lastLogin = new Date();
+
+        await user.save();
+
+        console.log(`${email} has Logged in Successful at ${user.lastLogin}`);
+        return res.send('Login Successful');
     }
     catch (error) {
         console.error('Login Error:', error);
