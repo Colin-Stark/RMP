@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const authCheck = require('./middleware/auth_check');
