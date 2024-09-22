@@ -8,6 +8,7 @@ const app = express();
 const userRegister = require('./routes/register');
 const userLogin = require('./routes/login');
 const userVerification = require('./routes/verification');
+const userResendOTP = require('./routes/resend_otp');
 
 // Middleware
 app.use(express.json());
@@ -27,6 +28,7 @@ app.use(cors({
 app.use("/register", userRegister);
 app.use("/login", userLogin);
 app.use("/verify", userVerification);
+app.use("/resend_otp", userResendOTP);
 
 
 
@@ -44,10 +46,10 @@ const connectDB = async () => {
 
         // Start the server
 
-        // const PORT = 8080;
-        // app.listen(PORT, () => {
-        //     console.log(`Server running on port ${PORT}`);
-        // });
+        const PORT = 8080;
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
 
     } catch (error) {
         console.error('MongoDB Connection Error:', error);

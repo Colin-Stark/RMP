@@ -1,6 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const User = require('../Mongo/schemas');
+const { validateUserExists } = require('../model/find_user');
 
 const router = express.Router();
 
@@ -23,17 +23,11 @@ router.get('/', (req, res) => {
 });
 
 // Login (POST)
-router.post('/', validateLogInInput, async (req, res) => {
+router.post('/', validateLogInInput, validateUserExists, async (req, res) => {
     const { email, password } = req.body;
+    const user = req.user;
 
     try {
-
-        const user = await User.findOne({ email });
-        if (!user) {
-            console.log(`User with the email: ${email} not found`);
-            return res.status(404).send('User not found');
-        }
-
         // check that the password is correct
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {

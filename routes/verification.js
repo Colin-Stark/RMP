@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../Mongo/schemas');
+const { validateUserExists } = require('../model/find_user');
 const router = express.Router();
 
 // Middleware to validate request
@@ -20,16 +20,11 @@ router.get('/', (req, res) => {
 });
 
 // Verify OTP (POST)
-router.post('/', validateOTPInput, async (req, res) => {
+router.post('/', validateOTPInput, validateUserExists, async (req, res) => {
     const { email, otp } = req.body;
+    const user = req.user;
 
     try {
-
-        const user = await User.findOne({ email });
-        if (!user) {
-            console.log(`User with the email: ${email} not found`);
-            return res.status(404).send('User not found');
-        }
 
         // check that otpExpires is greater than current date and time
         if (user.otpExpires < Date.now()) {
