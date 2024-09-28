@@ -34,7 +34,7 @@ const generateOTP = async (email) => {
 
 const sendOTPEmail = async (email, otp) => {
     let transporter = nodemailer.createTransport({
-        host: "smtp.office365.com",
+        host: "smtp.gmail.com",
         port: 587,
         secure: false,
         auth: {
@@ -45,7 +45,7 @@ const sendOTPEmail = async (email, otp) => {
     });
 
     let info = await transporter.sendMail({
-        from: '"Rate My Professor" <rirr0@outlook.com>',
+        from: `"Rate My Professor" <${process.env.OUTLOOK_EMAIL}>`,
         to: email,
         subject: "OTP Verification",
         text: `Your OTP is ${otp}`, // Plain text body for non-HTML clients
@@ -67,7 +67,7 @@ const sendOTPEmail = async (email, otp) => {
         `,
     });
 
-    console.log(`Email sent to: , ${info.accepted} with message ID: ${info.messageId}`);
+    console.log(`Email sent to: ${info.accepted} with message ID: ${info.messageId}`);
 
 };
 
