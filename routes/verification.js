@@ -33,7 +33,7 @@ router.post('/', validateOTPInput, validateUserExists, async (req, res) => {
         }
 
         // check that the OTP is correct
-        if (user.otp !== otp) {
+        if (user.otp !== parseInt(otp)) {
             console.log('Invalid OTP');
             return res.status(401).send('Invalid OTP');
         }
