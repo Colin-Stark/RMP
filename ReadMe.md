@@ -2,6 +2,8 @@
 
 This repository contains an Express server with user authentication features, such as registration, login, OTP verification, and OTP resending. Below is the documentation for the API endpoints.
 
+➡️ [API Documentation Page](https://colin-stark.github.io/RMP/)
+
 ### Table of Contents
 
 - [Installation](#installation)
