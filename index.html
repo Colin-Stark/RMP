@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Express API Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            margin-bottom: 40px;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .endpoint {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .endpoint h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .endpoint p {
+            margin: 5px 0;
+        }
+
+        .endpoint code {
+            background-color: #e7e7e7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .endpoint ul {
+            padding-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Express API Documentation</h1>
+        <p>A guide to understanding and using the API</p>
+    </div>
+
+    <div class="container">
+
+        <div class="intro">
+            <p>Welcome to the API documentation for our Express server. This API allows users to register, log in,
+                verify their account using an OTP (One-Time Password), and resend OTPs. Below you will find details on
+                how to use each endpoint, including the required request methods, request body formats, and possible
+                responses.</p>
+        </div>
+
+        <h2>API Endpoints</h2>
+
+        <!-- GET / -->
+        <div class="endpoint">
+            <h3>GET /</h3>
+            <p><strong>Description:</strong> A test endpoint to check if the server is running.</p>
+            <p><strong>Method:</strong> <code>GET</code></p>
+            <p><strong>Response:</strong> <code>200 OK</code> with the message <code>"Test"</code></p>
+        </div>
+
+        <!-- POST /register -->
+        <div class="endpoint">
+            <h3>POST /register</h3>
+            <p><strong>Description:</strong> Registers a new user with an email and password.</p>
+            <p><strong>Method:</strong> <code>POST</code></p>
+            <p><strong>Content-Type:</strong> <code>application/json</code></p>
+            <p><strong>Request Body:</strong></p>
+            <ul>
+                <li><code>email</code> (string, required, must end with <code>@myseneca.ca</code>)</li>
+                <li><code>password</code> (string, required, 8-16 characters)</li>
+            </ul>
+            <p><strong>Response:</strong> <code>200 OK</code> with the message <code>"Registration Successful"</code>
+            </p>
+            <p><strong>Error Responses:</strong></p>
+            <ul>
+                <li><code>400 Bad Request</code> - Invalid email or password</li>
+                <li><code>500 Internal Server Error</code> - Server error during registration</li>
+            </ul>
+        </div>
+
+        <!-- POST /login -->
+        <div class="endpoint">
+            <h3>POST /login</h3>
+            <p><strong>Description:</strong> Logs in an existing user using email and password.</p>
+            <p><strong>Method:</strong> <code>POST</code></p>
+            <p><strong>Content-Type:</strong> <code>application/json</code></p>
+            <p><strong>Request Body:</strong></p>
+            <ul>
+                <li><code>email</code> (string, required)</li>
+                <li><code>password</code> (string, required)</li>
+            </ul>
+            <p><strong>Response:</strong> <code>200 OK</code> with the message <code>"Login Successful"</code></p>
+            <p><strong>Error Responses:</strong></p>
+            <ul>
+                <li><code>400 Bad Request</code> - Missing email or password</li>
+                <li><code>401 Unauthorized</code> - Incorrect password</li>
+                <li><code>500 Internal Server Error</code> - Server error during login</li>
+            </ul>
+        </div>
+
+        <!-- POST /verify -->
+        <div class="endpoint">
+            <h3>POST /verify</h3>
+            <p><strong>Description:</strong> Verifies a user's account using an OTP.</p>
+            <p><strong>Method:</strong> <code>POST</code></p>
+            <p><strong>Content-Type:</strong> <code>application/json</code></p>
+            <p><strong>Request Body:</strong></p>
+            <ul>
+                <li><code>email</code> (string, required)</li>
+                <li><code>otp</code> (string, required)</li>
+            </ul>
+            <p><strong>Response:</strong> <code>200 OK</code> with the message <code>"Verification Successful"</code>
+            </p>
+            <p><strong>Error Responses:</strong></p>
+            <ul>
+                <li><code>400 Bad Request</code> - Invalid email or OTP</li>
+                <li><code>500 Internal Server Error</code> - Server error during verification</li>
+            </ul>
+        </div>
+
+        <!-- POST /resend_otp -->
+        <div class="endpoint">
+            <h3>POST /resend_otp</h3>
+            <p><strong>Description:</strong> Resends an OTP to the user's email.</p>
+            <p><strong>Method:</strong> <code>POST</code></p>
+            <p><strong>Content-Type:</strong> <code>application/json</code></p>
+            <p><strong>Request Body:</strong></p>
+            <ul>
+                <li><code>email</code> (string, required)</li>
+            </ul>
+            <p><strong>Response:</strong> <code>200 OK</code> with the message
+                <code>"OTP resent to: &lt;email&gt;"</code></p>
+            <p><strong>Error Responses:</strong></p>
+            <ul>
+                <li><code>400 Bad Request</code> - Missing email</li>
+                <li><code>500 Internal Server Error</code> - Server error during OTP resend</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2024 Express Server Documentation. All rights reserved.
+    </footer>
+
+</body>
+
+</html>
