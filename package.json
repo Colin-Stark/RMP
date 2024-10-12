@@ -4,19 +4,19 @@
   "description": "A similar project to rate my professor but focused on seneca professor. Made by seneca student, for seneca student and to seneca student",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node --watch ./server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Colin-Stark/SenecaRateMyProfessor.git"
+    "url": "git+https://github.com/Colin-Stark/RMP.git"
   },
   "author": "COLLINS OLOKPEDJE",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Colin-Stark/SenecaRateMyProfessor/issues"
+    "url": "https://github.com/Colin-Stark/RMP/issues"
   },
-  "homepage": "https://github.com/Colin-Stark/SenecaRateMyProfessor#readme",
+  "homepage": "https://github.com/Colin-Stark/RMP#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -26,5 +26,9 @@
     "mongoose": "^8.5.2",
     "nodemailer": "^6.9.14",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }

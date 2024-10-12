@@ -69,5 +69,7 @@ router.post('/', validateRegisterInput, async (req, res) => {
     }
 });
 
+console.log(User);
+
 
 module.exports = router;
