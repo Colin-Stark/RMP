@@ -5,7 +5,7 @@ const checkUserExists = async (email, res) => {
     const user = await User.findOne({ email });
     if (!user) {
         console.log(`User with the email: ${email} not found`);
-        res.status(404).send('User not found');
+        res.status(401).send('User not found');
         return null;
     }
     return user;

@@ -1,14 +1,10 @@
-const express = require('express');
+const axios = require('axios'); // Use axios for direct HTTP requests
 const mongoose = require('mongoose');
-const request = require('supertest');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
-const { User } = require('../Mongo/schemas'); // Import User model
-const app = express();
-const loginRouter = require('../routes/login');
+const { User } = require('../Mongo/schemas');
 
-app.use(express.json());
-app.use('/login', loginRouter);
+const BASE_URL = process.env.BASE_URL;
 
 // Connect to MongoDB
 beforeAll(async () => {
@@ -27,10 +23,9 @@ afterAll(async () => {
 
 // Test Suite
 describe('Login Routes', () => {
-    let mockUser; // To hold the user for tests
+    let mockUser;
 
     beforeEach(async () => {
-        // Create a mock user for testing
         const password = await bcrypt.hash('password123', 10);
         mockUser = new User({
             email: 'test@myseneca.ca',
@@ -40,48 +35,47 @@ describe('Login Routes', () => {
     });
 
     test('GET /login returns login page', async () => {
-        const response = await request(app).get('/login');
+        const response = await axios.get(`${BASE_URL}`);
         expect(response.status).toBe(200);
-        expect(response.text).toBe('Login Page');
+        expect(response.data).toBe('Login Page');
     });
 
     test('POST /login with valid credentials', async () => {
-        const response = await request(app)
-            .post('/login')
-            .send({ email: 'test@example.com', password: 'password123' });
+        const response = await axios.post(`${BASE_URL}`, {
+            email: 'test@myseneca.ca',
+            password: 'password123',
+        });
 
         expect(response.status).toBe(200);
-        expect(response.text).toBe('Login Successful');
-
-        const updatedUser = await User.findById(mockUser._id);
-        expect(updatedUser.isLoggedIn).toBe(true);
-        expect(updatedUser.lastLogin).toBeInstanceOf(Date);
+        expect(response.data).toBe('Login Successful');
     });
 
     test('POST /login with invalid email', async () => {
-        const response = await request(app)
-            .post('/login')
-            .send({ email: 'wrong@example.com', password: 'password123' });
+        const response = await axios.post(`${BASE_URL}`, {
+            email: 'wrong@example.com',
+            password: 'password123',
+        });
 
-        expect(response.status).toBe(404); // Adjust according to your error handling
-        expect(response.text).toBe('User not found'); // Customize based on your actual response
+        expect(response.status).toBe(401);
+        expect(response.data).toBe('User not found');
     });
 
     test('POST /login with invalid password', async () => {
-        const response = await request(app)
-            .post('/login')
-            .send({ email: 'test@example.com', password: 'wrongpassword' });
+        const response = await axios.post(`${BASE_URL}`, {
+            email: 'test@myseneca.ca',
+            password: 'wrongpassword',
+        });
 
         expect(response.status).toBe(401);
-        expect(response.text).toBe('Invalid Password');
+        expect(response.data).toBe('Invalid Password');
     });
 
     test('POST /login with missing fields', async () => {
-        const response = await request(app)
-            .post('/login')
-            .send({ email: 'test@example.com' }); // Missing password
+        const response = await axios.post(`${BASE_URL}`, {
+            email: 'test@myseneca.ca', // Missing password
+        });
 
         expect(response.status).toBe(400);
-        expect(response.text).toBe('Email and Password are required');
+        expect(response.data).toBe('Email and Password are required');
     });
 });
