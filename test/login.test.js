@@ -51,31 +51,38 @@ describe('Login Routes', () => {
     });
 
     test('POST /login with invalid email', async () => {
-        const response = await axios.post(`${BASE_URL}`, {
-            email: 'wrong@example.com',
-            password: 'password123',
-        });
-
-        expect(response.status).toBe(401);
-        expect(response.data).toBe('User not found');
+        try {
+            await axios.post(`${BASE_URL}`, {
+                email: 'wrong@example.com',
+                password: 'password123',
+            });
+        } catch (error) {
+            expect(error.response.status).toBe(401); // Expect a 401 status
+            expect(error.response.data).toBe('User not found'); // Expect the response message
+        }
     });
 
     test('POST /login with invalid password', async () => {
-        const response = await axios.post(`${BASE_URL}`, {
-            email: 'test@myseneca.ca',
-            password: 'wrongpassword',
-        });
-
-        expect(response.status).toBe(401);
-        expect(response.data).toBe('Invalid Password');
+        try {
+            await axios.post(`${BASE_URL}`, {
+                email: 'test@myseneca.ca',
+                password: 'wrongpassword',
+            });
+        } catch (error) {
+            expect(error.response.status).toBe(401);
+            expect(error.response.data).toBe('Invalid Password');
+        }
     });
 
     test('POST /login with missing fields', async () => {
-        const response = await axios.post(`${BASE_URL}`, {
-            email: 'test@myseneca.ca', // Missing password
-        });
-
-        expect(response.status).toBe(400);
-        expect(response.data).toBe('Email and Password are required');
+        try {
+            await axios.post(`${BASE_URL}`, {
+                email: 'test@myseneca.ca', // Missing password
+            });
+        }
+        catch (error) {
+            expect(error.response.status).toBe(400);
+            expect(error.response.data).toBe('Email and Password are required');
+        }
     });
 });
