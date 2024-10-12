@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const User = require('../Mongo/schemas');
+const { User } = require('../Mongo/schemas');
 
 
 /**

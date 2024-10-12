@@ -33,9 +33,7 @@ describe('Login Routes', () => {
         // Create a mock user for testing
         const password = await bcrypt.hash('password123', 10);
         mockUser = new User({
-            firstName: 'Test',
-            lastName: 'User',
-            email: 'test@example.com',
+            email: 'test@myseneca.ca',
             password,
         });
         await mockUser.save();

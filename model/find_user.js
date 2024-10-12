@@ -1,4 +1,4 @@
-const User = require('../Mongo/schemas');
+const { User } = require('../Mongo/schemas');
 
 // Function to check if user exists
 const checkUserExists = async (email, res) => {
