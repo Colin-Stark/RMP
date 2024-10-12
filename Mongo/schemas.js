@@ -46,36 +46,36 @@ const userSchema = new Schema({
     }
 });
 
-// // Course Schema
-// const courseSchema = new Schema({
-//     courseCode: {
-//         type: String,
-//         required: true,
-//     },
-//     courseName: {
-//         type: String,
-//         required: true,
-//     },
-// });
+// Course Schema
+const courseSchema = new Schema({
+    courseCode: {
+        type: String,
+        required: true,
+    },
+    courseName: {
+        type: String,
+        required: true,
+    },
+});
 
-// // Semester Schema
-// const semesterSchema = new Schema({
-//     semester: {
-//         type: Number,
-//         required: true,
-//     },
-//     courses: [courseSchema], // Array of courses
-// });
+// Semester Schema
+const semesterSchema = new Schema({
+    semester: {
+        type: Number,
+        required: true,
+    },
+    courses: [courseSchema], // Array of courses
+});
 
-// // Course Catalog Schema
-// const courseCatalogSchema = new Schema({
-//     semesters: [semesterSchema], // Array of semesters
-// });
+// Course Catalog Schema
+const courseCatalogSchema = new Schema({
+    semesters: [semesterSchema], // Array of semesters
+});
 
 const User = mongoose.model('User', userSchema);
-// const CourseCatalog = mongoose.model('CourseCatalog', courseCatalogSchema);
+const CourseCatalog = mongoose.model('CourseCatalog', courseCatalogSchema);
 
 module.exports = {
     User,
-    // CourseCatalog,
+    CourseCatalog,
 };

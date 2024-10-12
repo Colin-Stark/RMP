@@ -1,6 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const User = require('../Mongo/schemas');
+const { User } = require('../Mongo/schemas');
 const { generateOTP, sendOTPEmail } = require('../model/otp_logic');
 
 const router = express.Router();
@@ -68,8 +68,6 @@ router.post('/', validateRegisterInput, async (req, res) => {
         handleRegisterError(error, res);
     }
 });
-
-console.log(User);
 
 
 module.exports = router;
