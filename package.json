@@ -4,7 +4,7 @@
   "description": "A similar project to rate my professor but focused on seneca professor. Made by seneca student, for seneca student and to seneca student",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "start": "node --watch ./server.js"
   },
   "repository": {

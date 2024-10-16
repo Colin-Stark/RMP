@@ -3,7 +3,7 @@ const User = require('../Mongo/schemas'); // Adjust the path if necessary
 async function authCheck(req, res, next) {
     try {
         // Allow requests to pass through for login and register routes
-        if (req.path === "/login" || req.path === "/register") {
+        if (req.path === "/login" || req.path === "/register" || req.path === "/courses") {
             return next();
         }
 

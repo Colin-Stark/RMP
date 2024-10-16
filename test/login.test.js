@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const { User } = require('../Mongo/schemas');
 
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.BASE_URL + '/login';
 
 // Connect to MongoDB
 beforeAll(async () => {
@@ -13,7 +13,9 @@ beforeAll(async () => {
 
 // Clear the database after each test
 afterEach(async () => {
-    await User.deleteMany({});
+    await User.deleteOne({
+        email: 'test@myseneca.ca'
+    });
 });
 
 // Close connection after all tests
